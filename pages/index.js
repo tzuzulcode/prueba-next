@@ -11,6 +11,7 @@ export default function Home() {
       <Saludo/>
 
       <Link href="/characters">Ir a personajes</Link>
+      <Link href="/charactersSSR">Ir a personajes SSR</Link>
     </div>
   )
 }
