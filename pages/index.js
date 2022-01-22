@@ -6,6 +6,7 @@ export default function Home() {
   const [open,setOpen] = useState(false)
   return (
     <div>
+      <p className=' text-yellow-400 text-3xl'>Prueba tailwind</p>
       {open&&<p>Hola!!!</p>}
       <button onClick={()=>{setOpen(!open)}}>Presionar</button>
       <Saludo/>
