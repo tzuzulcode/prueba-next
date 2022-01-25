@@ -13,10 +13,11 @@ export async function getServerSideProps(){
 
 
 export default function index({products}) {
+  console.log(products)
   return <section>
-      {products.map(product=><article key={product.id}>
-        <h3>{product.nombre}</h3>
-        <p>{product.descripcion}</p>
+      {products.map(product=><article key={product.name}>
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
       </article>)}
   </section>;
 }
