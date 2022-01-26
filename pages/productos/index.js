@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios'
-export async function getServerSideProps(){
+import Products from '../../components/Products';
+
+export async function getServerSideProps({req}){
     // Lunes: Una solución a este problema
-    const {data:products} = await axios.get("http://localhost:3000/api/productos")
+    const {data:products} = await axios.get(`http://${req.headers.host}/api/productos`)
 
     return {
         props:{
@@ -13,11 +15,7 @@ export async function getServerSideProps(){
 
 
 export default function index({products}) {
-  console.log(products)
-  return <section>
-      {products.map(product=><article key={product.name}>
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-      </article>)}
-  </section>;
+  return <main className='p-5'>
+      <Products products={products}/>
+  </main>;
 }

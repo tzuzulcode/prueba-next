@@ -33,4 +33,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-/database/credentials.json
+/database/credentials_firebase.json

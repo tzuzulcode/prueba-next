@@ -1,4 +1,4 @@
-import database from "../../database"
+import database from "../../../database"
 
 export default async function productos(req,res){
     // Consulta de información
