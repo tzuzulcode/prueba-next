@@ -17,7 +17,7 @@ export async function getServerSideProps({req}){
 
 export default function index({products}) {
   return <Page>
-        <main className='p-5'>
+        <main>
             <Products products={products}/>
         </main>
   </Page>;
