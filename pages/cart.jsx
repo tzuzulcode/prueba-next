@@ -4,10 +4,10 @@ import Page from '../components/Page';
 import Products from '../components/Products';
 
 export default function cart() {
-    const {cart} = useSelector(state=>state)
+    const {items} = useSelector(state=>state.cart)
   return <Page>
       <section>
-          <Products products={cart}></Products>
+          <Products products={items}></Products>
       </section>
   </Page>;
 }
