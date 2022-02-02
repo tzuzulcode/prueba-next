@@ -1,20 +1,23 @@
 import React from 'react';
 import { motion } from "framer-motion"
 import { useDispatch } from 'react-redux';
-import { addToCart, removeFromCart,reduceFromCart } from '../features/Cart';
+import { addToCart, removeFromCart,reduceFromCart, saveCart } from '../features/Cart';
 import {FaCartPlus,FaCartArrowDown} from 'react-icons/fa'
 import {FaTrash} from 'react-icons/fa'
 export default function Product({product}) {
     const dispatch = useDispatch()
     const agregarAlCarrito = () =>{
         dispatch(addToCart(product))
+        dispatch(saveCart())
     }
 
     const removerDelCarrito= () =>{
         dispatch(removeFromCart(product))
+        dispatch(saveCart())
     }
     const reducirDelCarrito= () =>{
         dispatch(reduceFromCart(product))
+        dispatch(saveCart())
     }
 
   return <motion.article
