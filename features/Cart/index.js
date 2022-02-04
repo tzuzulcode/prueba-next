@@ -16,6 +16,21 @@ export const saveCart = createAsyncThunk("cart/saveCart",async (cart,{getState})
 
     return data
 })
+export const getCart = createAsyncThunk("cart/getCart",async ()=>{
+    
+    const result = await fetch("http://localhost:3000/api/cart/get",{
+        method:"POST",
+        body:JSON.stringify({username:"tzuzulcode"}),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+
+    const data = await result.json()
+    console.log(data)
+
+    return data
+})
 
 const cartSlice = createSlice({
     name:"cart",
@@ -27,18 +42,20 @@ const cartSlice = createSlice({
     reducers:{
         addToCart:(state,action)=>{
             // action.payload es el nuevo producto
+            console.log("Producto",{...action.payload})
             const index = state.items.findIndex(item=>item.id===action.payload.id)
             if(index!==-1){
                 state.items[index].cantidad +=1
             }else{
-                action.payload.cantidad = 1
-                state.items.push(action.payload)
+                const newObject = {...action.payload,cantidad:1}
+                state.items.push(newObject)
             }
             
             // Redux toolkit hace esto por detrás setState({...state})
         },
         removeFromCart:(state,{payload})=>{
             state.items = state.items.filter(product=>product.id!==payload.id)
+            console.log(state.items)
         },
         reduceFromCart:(state,{payload})=>{
             const index = state.items.findIndex(item=>item.id===payload.id)
@@ -57,8 +74,16 @@ const cartSlice = createSlice({
         }).addCase(saveCart.fulfilled,(state,action)=>{
             state.loading = false
             state.error = false
-            console.log(action.payload)
         }).addCase(saveCart.rejected,(state,action)=>{
+            state.loading = false
+            state.error = true
+        }).addCase(getCart.pending,(state,action)=>{
+            state.loading = true
+        }).addCase(getCart.fulfilled,(state,action)=>{
+            state.loading = false
+            state.error = false
+            state.items = action.payload.items
+        }).addCase(getCart.rejected,(state,action)=>{
             state.loading = false
             state.error = true
         })

@@ -8,7 +8,7 @@ const payment = (data)=>{
                 console.log(data)
                 resolve(data)
             }else{
-                reject(data)
+                reject("Error")
             }
         },5000)
     })
@@ -19,7 +19,7 @@ export const pay = createAsyncThunk("payment/pay",async (data,{rejectWithValue})
         const resultado = await payment(data)
         return resultado
     }catch(error){
-        rejectWithValue({message:"Algo sucedio mal...",error:true})
+        return rejectWithValue({message:"Algo sucedio mal...",error:true})
     }
 })
 
