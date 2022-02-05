@@ -3,7 +3,6 @@ import Saludo from '../components/Saludo'
 import Link from 'next/link'
 import Products from '../components/Products'
 import axios from 'axios'
-import Page from '../components/Page'
 
 export async function getServerSideProps({req}){
   // Lunes: Una solución a este problema
@@ -18,7 +17,7 @@ export async function getServerSideProps({req}){
 export default function Home({products}) {
   const [open,setOpen] = useState(false)
   return (
-    <Page>
+    <>
       <p className=' text-yellow-400 text-3xl'>Prueba tailwind</p>
       {open&&<p>Hola!!!</p>}
       <button onClick={()=>{setOpen(!open)}}>Presionar</button>
@@ -27,6 +26,6 @@ export default function Home({products}) {
       <Link href="/characters">Ir a personajes</Link>
       <Link href="/charactersSSR">Ir a personajes SSR</Link>
       <Products products={products}/>
-    </Page>
+    </>
   )
 }
