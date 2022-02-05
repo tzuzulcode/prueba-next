@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { increment, incrementTotal, pay, reduceTotal } from '../../features/Ejemplo';
 
-export default function payment() {
+export default function Payment() {
     const {total,loading,error,success,data} = useSelector(state=>state.payment)
     const dispatch = useDispatch()
     return <div>
