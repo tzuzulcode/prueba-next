@@ -1,8 +1,10 @@
 import database from "../../../database"
+import {collection,query,getDocs} from 'firebase/firestore'
 
 export default async function productos(req,res){
     // Consulta de información
-    const snapshot = await database.collection("productos").get()
+    const consulta = query(collection(database,"productos"))
+    const snapshot = await getDocs(consulta)
     if(snapshot.empty){
         return res.status(404).json({message:"No se encontraron documentos"})
     }

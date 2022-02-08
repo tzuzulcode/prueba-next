@@ -1,15 +1,16 @@
-import admin from 'firebase-admin'
-import serviceAccount from './credentials_firebase.json'
-
+import { initializeApp,getApps,getApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 let app
 
-if(!admin.apps.length){
-    app = admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
+if(!getApps.length){
+    app = initializeApp({
+        apiKey: process.env.FIREBASE_PUBLIC_API_KEY,
+        authDomain:process.env.FIREBASE_AUTH_DOMAIN,
+        projectId:process.env.FIREBASE_PROJECT_ID,
     });
 }else{
-    app = admin.app()
+    app = getApp()
 }
-const database = app.firestore()
+const database = getFirestore(app)
 
 export default database

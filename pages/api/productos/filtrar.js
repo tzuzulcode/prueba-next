@@ -1,14 +1,16 @@
 import database from "../../../database"
-
+import {collection,query,getDocs,where} from 'firebase/firestore'
 export default async function filtrar(req,res){
     const {popular} = req.query
     // Consulta de información
-    const collection = database.collection("productos")
+    const col = collection(database,"productos")
     let snapshot
     if(popular){
-        snapshot = await collection.where('popular','==',true).get()
+        const consulta = query(col,where('popular','==',true))
+        snapshot = await getDocs(consulta)
     }else{
-        snapshot = await collection.get()
+        const consulta = query(col)
+        snapshot = await getDocs(consulta)
     }
     
     if(snapshot.empty){
