@@ -1,4 +1,4 @@
-import database from "../../../database"
+import {database} from "../../../database"
 import {collection,query,getDocs} from 'firebase/firestore'
 
 export default async function productos(req,res){

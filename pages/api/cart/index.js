@@ -1,4 +1,4 @@
-import database from "../../../database"
+import {database} from "../../../database"
 import {doc,updateDoc} from 'firebase/firestore'
 export default async function saveCart({body,method},res){
     if(method==="POST"){

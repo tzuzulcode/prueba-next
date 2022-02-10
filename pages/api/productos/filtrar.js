@@ -1,4 +1,4 @@
-import database from "../../../database"
+import {database} from "../../../database"
 import {collection,query,getDocs,where} from 'firebase/firestore'
 export default async function filtrar(req,res){
     const {popular} = req.query

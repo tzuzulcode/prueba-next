@@ -1,4 +1,4 @@
-import database from "../../../database"
+import {database} from "../../../database"
 import {doc,getDoc} from 'firebase/firestore'
 
 export default async function getCart({body},res){

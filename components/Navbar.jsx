@@ -13,6 +13,7 @@ export default function Navbar() {
         <ul className={`gap-5 ${show?"flex":"hidden"} sm:flex`}>
             <li><Link href="/productos">Productos</Link></li>
             <li><Link href="/productos">Productos</Link></li>
+            <li><Link href="/auth">Auth</Link></li>
             <li><Link href="/cart"><p>Carrito {cart.length}</p></Link></li>
         </ul>
         <button className='sm:hidden' onClick={()=>{setShow(!show)}}>Menu</button>
