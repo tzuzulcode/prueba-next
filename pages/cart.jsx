@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux';
 import Products from '../components/Products';
 
 export default function Cart() {
-    const {items} = useSelector(state=>state.cart)
+    const {cart:{items},auth:{logged}} = useSelector(state=>state)
     return <>
         <section>
-            <Products products={items}></Products>
+            {logged?<Products products={items}></Products>:
+            <p>Inicia sesión para agregar al carrito</p>
+            }
         </section>
     </>;
 }

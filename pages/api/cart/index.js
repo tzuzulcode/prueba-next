@@ -1,8 +1,8 @@
 import {database} from "../../../database"
-import {doc,updateDoc} from 'firebase/firestore'
+import {doc,setDoc} from 'firebase/firestore'
 export default async function saveCart({body,method},res){
     if(method==="POST"){
-        const snapshot = await updateDoc(
+        const snapshot = await setDoc(
             doc(
                 database,
                 "cart",

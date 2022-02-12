@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const saveCart = createAsyncThunk("cart/saveCart",async (cart,{getState})=>{
-    const {cart:{items}} = getState()
+    const {cart:{items},auth:{id}} = getState()
     
     //TODO: Mejorar
     const result = await fetch("/api/cart",{
         method:"POST",
-        body:JSON.stringify({username:"tzuzulcode",data:{items}}),
+        body:JSON.stringify({username:id,data:{items}}),
         headers:{
             "Content-Type":"application/json"
         }
@@ -17,11 +17,11 @@ export const saveCart = createAsyncThunk("cart/saveCart",async (cart,{getState})
 
     return data
 })
-export const getCart = createAsyncThunk("cart/getCart",async ()=>{
-    
+export const getCart = createAsyncThunk("cart/getCart",async (payload,{getState})=>{
+    const {auth:{id}} = getState()
     const result = await fetch("/api/cart/get",{
         method:"POST",
-        body:JSON.stringify({username:"tzuzulcode"}),
+        body:JSON.stringify({username:id}),
         headers:{
             "Content-Type":"application/json"
         }
@@ -67,6 +67,9 @@ const cartSlice = createSlice({
                     state.items.splice(index,1)
                 }
             }
+        },
+        emptyCart:(state,action)=>{
+            state.items = []
         }
     },
     extraReducers(builder){
@@ -93,4 +96,4 @@ const cartSlice = createSlice({
 const cartReducer = cartSlice.reducer
 export default cartReducer
 
-export const {addToCart,removeFromCart,reduceFromCart} = cartSlice.actions
+export const {addToCart,removeFromCart,reduceFromCart,emptyCart} = cartSlice.actions
