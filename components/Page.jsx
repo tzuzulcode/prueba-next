@@ -5,7 +5,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import {onAuthStateChanged} from 'firebase/auth'
 import { auth } from '../database';
-import { login } from '../features/auth';
+import { login, logout } from '../features/auth';
 
 export default function Page({children}) {
   const dispatch = useDispatch()
@@ -21,6 +21,7 @@ export default function Page({children}) {
         }))
         dispatch(getCart())
       }else{
+        dispatch(logout())
         dispatch(emptyCart())
       }
     })
