@@ -1,16 +1,5 @@
 import paypal from '@paypal/checkout-server-sdk'
-
-//console.log(process.env.NODE_ENV)
-const env = process.env.NODE_ENV
-const clientId = process.env.PAYPAL_CLIENT_ID
-const clientSecret = process.env.PAYPAL_CLIENT_SECRET
-
-const environment = env ==="development" ? 
-new paypal.core.SandboxEnvironment(clientId,clientSecret):
-new paypal.core.LiveEnvironment(clientId,clientSecret)
-
-const client = new paypal.core.PayPalHttpClient(environment)
-
+import client from '../../../libs/paypal_client'
 
 export default async function createOrder(req,res){
     const request = new paypal.orders.OrdersCreateRequest()
